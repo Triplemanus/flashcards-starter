@@ -13,7 +13,7 @@ class Round {
     this.currentCardIdx++;
     const answer = turn.giveFeedback(newGuess);
     if(answer === 'Incorrect!') {
-      this.incorrectGuesses.push(this.deck.cards[this.currentCardIdx].cardId);
+      this.incorrectGuesses.push(this.deck.cards[this.currentCardIdx].id);
     }
     return answer;
   }
