@@ -1,9 +1,9 @@
 class Card {
-  constructor(id, question, guess, answer) {
-  this.id,
-  this.question,
-  this.guess,
-  this.answer
+  constructor(id, question, answers, correctAnswer) {
+  this.id = id,
+  this.question = question,
+  this.answers = answers,
+  this.correctAnswer = correctAnswer
   }
 
 }

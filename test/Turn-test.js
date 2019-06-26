@@ -2,6 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Turn = require('../src/Turn');
+const Card = require('../src/Card');
 
 describe('Turn', function() {
 
@@ -15,18 +16,37 @@ describe('Turn', function() {
     expect(turn).to.be.an.instanceof(Turn);
   }); 
 
-  it.skip('should store a question', function() {
-    const card = new Card(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
-    expect(card.question).to.equal('What allows you to define a set of related information using key-value pairs?');
+  it('should return a guess', function() {
+    const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const turn = new Turn('pug', card);
+    expect(turn.guess).to.equal('pug');
   });  
 
-  it.skip('should store a list of possible answers', function() {
-    const card = new Card(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
-    expect(card.answers).to.deep.equal(['object', 'array', 'function']);
+  it('should return a card', function() {
+    const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const turn = new Turn('pug', card);
+    expect(turn.card).to.deep.equal({ id: 1,
+      question: 'What is Robbie\'s favorite animal',
+      answers: ['sea otter', 'pug', 'capybara'],
+      correctAnswer: 'sea otter' 
+      });
   });  
 
-  it.skip('should store the correct answer', function() {
-    const card = new Card(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
-    expect(card.correctAnswer).to.equal('object');
+  it('should store the correct answer', function() {
+    const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const turn = new Turn('capybara', card);
+    expect(turn.evaluateGuess()).to.equal(false);
+  });
+
+  it('should evaluate if the guess is correct', function() {
+    const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const turn = new Turn('sea otter', card);
+    expect(turn.evaluateGuess()).to.equal(true);
+  });
+
+  it('should return user Feedback?', function() {
+    const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    const turn = new Turn('capybara', card);
+    expect(turn.giveFeedback()).to.equal('Incorrect!');
   });
 });
