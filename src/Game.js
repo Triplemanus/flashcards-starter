@@ -7,11 +7,12 @@ const Round = require('../src/Round');
 
 class Game {
   constructor() {
-    this.currentRound = 1
+    this.currentRound = 0,
+    this.startTime = 0
   }
 
-  printMessage(deck, round) {
-      console.log(`\x1b[96m***------Welcome to FlashCards! This is \x1b[31mRound ${this.currentRound}\x1b[96m, you are playing with ${deck.countCards()} cards.------***\x1b[34m
+  printMessage(deck, round, roundNumber = 1) {
+      console.log(`\x1b[96m***------Welcome to FlashCards! This is \x1b[34mRound ${roundNumber}\x1b[96m, you are playing with ${deck.countCards()} cards.------***\x1b[34m
 -----------------------------------------------------------------------------------------`)
   }
 
@@ -19,16 +20,18 @@ class Game {
       util.main(round);
   }
 
-  start(){
+  start(numRound = 0){
+    //this.currentRound++;
+    numRound++;
     const cards = prototypeQuestions.map((quest) => {
       let card = new Card(quest.id, quest.question, quest.answers, quest.correctAnswer);
       return card;
       });
     
     const deck = new Deck(cards);
-    const round = new Round(deck);
+    const round = new Round(deck, numRound);
 
-    this.printMessage(deck, round);
+    this.printMessage(deck, round, numRound);
     this.printQuestion(round)
   }
 }
