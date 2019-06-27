@@ -36,8 +36,12 @@ async function main(round) {
   const getConfirm = await inquirer.prompt(confirmUpdate(getAnswer.answers, round));
 
     if(!round.returnCurrentCard()) {
-      round.endRound();
+
+      round.endRound(round.startTime);
     } else {
+      if (round.startTime === 0) {
+        round.startTime = Date.now();}
+      //console.log(`Start time is ${round.startTime}`);
       main(round);
     }
 }
