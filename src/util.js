@@ -11,7 +11,7 @@ const genList = (round) => {
   });
   return {
     type: 'rawlist',
-    message: card.question,
+    message: `\x1b[92mQuestion(${round.currentCardIndex+1})  \x1b[31m` + card.question,
     name: 'answers',
     choices: choices
   };
