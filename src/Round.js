@@ -18,7 +18,7 @@ class Round {
     return answer;
   }
   returnCurrentCard() {
-        return this.deck.cards[this.currentCardIdx];
+    return this.deck.cards[this.currentCardIdx];
   }
 
   calculatePercentCorrect() {
