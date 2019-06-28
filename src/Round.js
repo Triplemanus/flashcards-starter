@@ -16,7 +16,6 @@ this.roundCounter = roundCounter
     this.turns++;
     const Turn = require('../src/Turn');
     const turn = new Turn(newGuess, this.deck.cards[this.currentCardIndex]);
-    //console.log(this.deck.cards[this.currentCardIndex].correctAnswer);
     this.currentCardIndex++;
     const answer = turn.giveFeedback(newGuess);
     if(answer === 'Incorrect!') {
