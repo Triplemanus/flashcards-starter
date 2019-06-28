@@ -17,11 +17,10 @@ class Game {
   }
 
   printQuestion(round) {
-      util.main(round);
+    util.main(round);
   }
 
   start(numRound = 0){
-    //this.currentRound++;
     numRound++;
     const cards = prototypeQuestions.map((quest) => {
       let card = new Card(quest.id, quest.question, quest.answers, quest.correctAnswer);
